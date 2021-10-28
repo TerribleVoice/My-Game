@@ -1,23 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    public Vector2Int Size;
+    public bool IsConflicted;
+    public bool IsActive;
+    public Renderer Renderer;
 
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.color = new Color(0.48f, 0.88f, 0.51f, 0.5f);
-    //     for (var x = 0; x < Size.x; x++)
-    //     {
-    //         for (var y = 0; y < Size.y; y++)
-    //         {
-    //             var newX = -Size.x / 2 + x;
-    //             var newY = -Size.y / 2 + y;
-    //
-    //             Gizmos.DrawCube(transform.position + new Vector3(newX, 0, newY), new Vector3(1, 0.1f, 1));
-    //         }
-    //     }
-    // }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Building>() != null)
+        {
+            IsConflicted = true;
+            if (IsActive)
+                Renderer.material.color = new Color(0.75f, 0.31f, 0.38f, 0.84f);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Building>() != null)
+        {
+            IsConflicted = false;
+            if (IsActive)
+                Renderer.material.color = new Color(0.34f, 0.74f, 0.32f, 0.84f);
+        }
+    }
 }

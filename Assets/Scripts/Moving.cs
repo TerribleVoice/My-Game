@@ -10,7 +10,7 @@ public class Moving : MonoBehaviour
     public LayerMask GroundMask;
     public Transform GroundCheck;
 
-    private float verticalVelocity = 0;
+    private float verticalVelocity;
 
     private void Update()
     {
@@ -22,14 +22,10 @@ public class Moving : MonoBehaviour
     {
         var isGrounded = Physics.CheckSphere(GroundCheck.position, 0.2f, GroundMask);
         if (isGrounded)
-        {
             verticalVelocity = 0f;
-        }
 
         if (isGrounded && Input.GetButton("Jump"))
-        {
             verticalVelocity = Mathf.Sqrt(JumpHeight * 2 * Gravity);
-        }
 
         verticalVelocity -= Gravity * Time.deltaTime;
         Controller.Move(Vector3.up * verticalVelocity * Time.deltaTime);
