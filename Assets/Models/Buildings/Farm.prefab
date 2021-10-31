@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsConflicted: 0
+  IsActive: 0
+  Renderer: {fileID: 3814437235415094607}
 --- !u!54 &954409492918788754
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -74,8 +76,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.292673, y: 9.671324, z: 7.145029}
-  m_Center: {x: -0.122769356, y: 4.835661, z: 0.2124033}
+  m_Size: {x: 4.25, y: 5.64, z: 4.16}
+  m_Center: {x: 0, y: 2.82, z: 0}
 --- !u!1001 &3800353366084882683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,15 +99,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367965935911802, guid: 2c121b1857a760c4f9ef7b0e4b09864c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4367965935911802, guid: 2c121b1857a760c4f9ef7b0e4b09864c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4367965935911802, guid: 2c121b1857a760c4f9ef7b0e4b09864c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 12
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4367965935911802, guid: 2c121b1857a760c4f9ef7b0e4b09864c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -152,5 +154,10 @@ PrefabInstance:
 --- !u!4 &3797121504898143105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4367965935911802, guid: 2c121b1857a760c4f9ef7b0e4b09864c, type: 3}
+  m_PrefabInstance: {fileID: 3800353366084882683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3814437235415094607 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23093269890303412, guid: 2c121b1857a760c4f9ef7b0e4b09864c, type: 3}
   m_PrefabInstance: {fileID: 3800353366084882683}
   m_PrefabAsset: {fileID: 0}

@@ -3,8 +3,6 @@ using UnityEngine;
 public class BuildingsGrid : MonoBehaviour
 {
     public Transform Player;
-    public GameObject CellPrefab;
-
 
     private Building flyingBuilding;
     private Camera mainCamera;
@@ -12,7 +10,6 @@ public class BuildingsGrid : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
-
     }
 
     public void Update()
@@ -20,7 +17,7 @@ public class BuildingsGrid : MonoBehaviour
         if (flyingBuilding != null)
         {
             var groundPlane = new Plane(Vector3.up, Vector3.zero);
-            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            var ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
 
             if (groundPlane.Raycast(ray, out var position))
             {
@@ -47,37 +44,31 @@ public class BuildingsGrid : MonoBehaviour
 
         flyingBuilding = Instantiate(building);
         flyingBuilding.IsActive = true;
+        flyingBuilding.RenderAcceptable();
     }
 
     private Vector2 ChooseCoordinatesWithOffset(Vector3 worldPosition)
     {
-        const int minDistance = 10;
+        const int minDistance = 5;
         const int maxDistance = 25;
-        //TODO : написать ограничеие максимальной и минимальной дальности
 
-        var radiusToBuilding = worldPosition - Player.position;
-        var playerPosition = new Vector2(Player.position.x, Player.position.z);
-        var radiusToBuildingNormalized = radiusToBuilding.normalized;
-        var minRadius = radiusToBuilding;
-        minRadius.Scale(Player.forward);
-        var maxRadius = radiusToBuildingNormalized * maxDistance;
+        var playerPosition = Player.position;
+        var playerPosition2D = new Vector2(playerPosition.x, playerPosition.z);
+        var buildingPosition2D = new Vector2(worldPosition.x, worldPosition.z);
+
+        var distanceToBuilding = Vector2.Distance(buildingPosition2D, playerPosition2D);
+        var radiusToBuilding = buildingPosition2D - playerPosition2D;
+
+        var minRadius = radiusToBuilding.normalized * minDistance;
+        var maxRadius = radiusToBuilding.normalized * maxDistance;
 
         Vector2 resultVector;
-        if (radiusToBuilding.magnitude < minRadius.magnitude)
-        {
-            resultVector = new Vector2(minRadius.x, minRadius.z) + playerPosition;
-            print($"minRadius {resultVector}");
-        }
-        else if (radiusToBuilding.magnitude > maxRadius.magnitude)
-        {
-            resultVector = new Vector2(maxRadius.x, maxRadius.z) + playerPosition;
-            print($"maxRadius {resultVector}");
-        }
+        if (distanceToBuilding < minDistance)
+            resultVector = playerPosition2D + minRadius;
+        else if (distanceToBuilding > maxDistance)
+            resultVector = playerPosition2D + maxRadius;
         else
-        {
-            resultVector = new Vector2(radiusToBuilding.x, radiusToBuilding.z) + playerPosition;
-            print($"selfRadius {resultVector}");
-        }
+            resultVector = radiusToBuilding + playerPosition2D;
 
         return resultVector;
     }
