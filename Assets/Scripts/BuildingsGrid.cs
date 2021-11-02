@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class BuildingsGrid : MonoBehaviour
@@ -37,12 +38,12 @@ public class BuildingsGrid : MonoBehaviour
         }
     }
 
-    public void StartPlacingBuilding(Building building)
+    public void StartPlacingBuilding(GameObject building)
     {
         if (flyingBuilding != null)
             Destroy(flyingBuilding.gameObject);
 
-        flyingBuilding = Instantiate(building);
+        flyingBuilding = PhotonNetwork.Instantiate(building.name, Vector3.zero, Quaternion.identity).GetComponent<Building>();
         flyingBuilding.IsActive = true;
         flyingBuilding.RenderAcceptable();
     }

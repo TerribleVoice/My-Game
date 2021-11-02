@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using Global;
+using Photon.Pun;
+using UnityEngine;
 
 public class Moving : MonoBehaviour
 {
@@ -6,29 +9,43 @@ public class Moving : MonoBehaviour
     public float Gravity;
     public float JumpHeight;
 
-    public CharacterController Controller;
-    public LayerMask GroundMask;
-    public Transform GroundCheck;
+    private CharacterController controller;
+    private Transform groundCheck;
+    public LayerMask GroundLayer;
 
     private float verticalVelocity;
+    private PhotonView photonView;
+    private bool isGrounded;
+
+    private void Start()
+    {
+        photonView = GetComponent<PhotonView>();
+        controller = photonView.GetComponent<CharacterController>();
+        groundCheck = GetComponentInChildren<GroundCheck>().transform;
+    }
 
     private void Update()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        print(photonView.Controller.NickName + ":" + controller.transform.position);
         GravityLogic();
         MovementLogic();
     }
 
     private void GravityLogic()
     {
-        var isGrounded = Physics.CheckSphere(GroundCheck.position, 0.2f, GroundMask);
+        isGrounded = false;
         if (isGrounded)
             verticalVelocity = 0f;
 
-        if (isGrounded && Input.GetButton("Jump"))
+        if (isGrounded && Input.GetKeyDown(KeyMap.Jump))
             verticalVelocity = Mathf.Sqrt(JumpHeight * 2 * Gravity);
 
         verticalVelocity -= Gravity * Time.deltaTime;
-        Controller.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+        controller.Move(Vector3.up * verticalVelocity * Time.deltaTime);
     }
 
     private void MovementLogic()
@@ -37,7 +54,6 @@ public class Moving : MonoBehaviour
         var z = Input.GetAxis("Vertical");
 
         var direction = transform.right * x + transform.forward * z;
-        Controller.Move(direction * Speed * Time.deltaTime);
-
+        controller.Move(direction * Speed * Time.deltaTime);
     }
 }

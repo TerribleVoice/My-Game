@@ -27,7 +27,7 @@ namespace UI
             IsActive = isActive;
             gameObject.SetActive(isActive);
             MouseLook.IsLocked = isActive;
-            Cursor.lockState = isActive ? CursorLockMode.Confined : CursorLockMode.Locked;
+            Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
         }
 
     }
