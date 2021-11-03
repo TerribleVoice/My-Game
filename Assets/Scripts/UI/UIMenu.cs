@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using Multiplayer;
+using Photon.Pun;
+using UnityEngine;
 
 namespace UI
 {
@@ -6,6 +9,11 @@ namespace UI
     {
         public MouseLook MouseLook;
         public bool IsActive { get; private set; }
+
+        private void Awake()
+        {
+            MouseLook = PlayerList.GetLocalPlayer().Camera.GetComponent<MouseLook>();
+        }
 
         public void SwitchActivityState()
         {

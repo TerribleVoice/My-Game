@@ -30,7 +30,8 @@ public class Moving : MonoBehaviour
         {
             return;
         }
-        print(photonView.Controller.NickName + ":" + controller.transform.position);
+        print(PhotonNetwork.LocalPlayer.UserId);
+
         GravityLogic();
         MovementLogic();
     }

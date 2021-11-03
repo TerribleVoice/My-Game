@@ -5,8 +5,7 @@ namespace UI
 {
     public class UIProcessor : MonoBehaviour
     {
-        public UIMenu BuildingMenu;
-        public MouseLook MouseLook;
+        public UIMenu BuildingMenu; 
 
         void Update()
         {

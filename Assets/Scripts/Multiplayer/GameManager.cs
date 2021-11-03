@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using System;
+using Global;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Multiplayer
@@ -9,7 +11,9 @@ namespace Multiplayer
         void Start()
         {
             var startPos = new Vector3(0, 1.5f, 0);
-            PhotonNetwork.Instantiate(PlayerPrefab.name, startPos, Quaternion.identity);
+            var player = PhotonNetwork.Instantiate(PlayerPrefab.name, startPos, Quaternion.identity).GetComponent<Player>();
+
+            PlayerList.CreatePlayer(PhotonHelper.LocalPlayerId, PhotonNetwork.NickName, player);
         }
 
         void Update()
