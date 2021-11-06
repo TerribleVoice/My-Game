@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 5386322653363767450}
-  Transform: {fileID: 5386322652176874952}
   Controller: {fileID: 5386322652176874999}
 --- !u!1 &5386322653363767448
 GameObject:

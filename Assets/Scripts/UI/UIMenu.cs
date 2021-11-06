@@ -12,7 +12,7 @@ namespace UI
 
         private void Awake()
         {
-            MouseLook = PlayerList.GetLocalPlayer().Camera.GetComponent<MouseLook>();
+            MouseLook = Local.Player.Camera.GetComponent<MouseLook>();
         }
 
         public void SwitchActivityState()

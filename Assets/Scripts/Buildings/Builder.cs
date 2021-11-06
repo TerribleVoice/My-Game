@@ -1,4 +1,4 @@
-using Global;
+using Multiplayer;
 using Photon.Pun;
 using UnityEngine;
 
@@ -6,22 +6,16 @@ namespace Buildings
 {
     public class Builder : MonoBehaviour
     {
-        public Transform Player;
-
+        private Transform playerTransform;
+        private Camera playerCamera;
         private Building flyingBuilding;
-        private Camera mainCamera;
-
-        private void Awake()
-        {
-            mainCamera = Camera.main;
-        }
 
         public void Update()
         {
             if (flyingBuilding != null)
             {
                 var groundPlane = new Plane(Vector3.up, Vector3.zero);
-                var ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
+                var ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
 
                 if (groundPlane.Raycast(ray, out var position))
                 {
@@ -33,23 +27,19 @@ namespace Buildings
 
                     if (Input.GetMouseButtonDown(0) && !flyingBuilding.IsConflicted)
                     {
-                        PlaceBuilding();
+                        flyingBuilding.Place();
+                        flyingBuilding = null;
                     }
                 }
             }
         }
 
-        private void PlaceBuilding()
-        {
-            flyingBuilding.OwnerId = PhotonHelper.LocalPlayerId;
-            flyingBuilding.Renderer.material.color = Color.white;
-            flyingBuilding.IsActive = false;
-            flyingBuilding = null;
-
-        }
-
         public void StartPlacingBuilding(GameObject building)
         {
+            var player = Local.Player;
+            playerCamera = player.Camera;
+            playerTransform = player.transform;
+
             if (flyingBuilding != null)
                 Destroy(flyingBuilding.gameObject);
 
@@ -63,7 +53,7 @@ namespace Buildings
             const int minDistance = 5;
             const int maxDistance = 25;
 
-            var playerPosition = Player.position;
+            var playerPosition = playerTransform.position;
             var playerPosition2D = new Vector2(playerPosition.x, playerPosition.z);
             var buildingPosition2D = new Vector2(worldPosition.x, worldPosition.z);
 

@@ -39,7 +39,6 @@ namespace Multiplayer
 
         private void Log(string message)
         {
-            print(message);
             LogText.text += "\n";
             LogText.text += message;
         }

@@ -1,4 +1,4 @@
-using System;
+using Multiplayer;
 using UnityEngine;
 
 namespace Buildings
@@ -10,7 +10,7 @@ namespace Buildings
         public Renderer Renderer;
         private readonly Color acceptableColor = new Color(0.34f, 0.74f, 0.32f, 0.84f);
         private readonly Color conflictedColor = new Color(0.75f, 0.31f, 0.38f, 0.84f);
-        public Guid OwnerId;
+        public Player Owner;
 
         private void OnTriggerExit(Collider other)
         {
@@ -40,6 +40,13 @@ namespace Buildings
         {
             if (IsActive)
                 Renderer.material.color = conflictedColor;
+        }
+
+        public virtual void Place()
+        {
+            Owner = Local.Player;
+            IsActive = false;
+            Renderer.material.color = Color.white;
         }
     }
 }

@@ -238,7 +238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingMenu: {fileID: 353525252}
-  MouseLook: {fileID: 0}
 --- !u!1 &185221592
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +248,8 @@ GameObject:
   m_Component:
   - component: {fileID: 185221594}
   - component: {fileID: 185221593}
+  - component: {fileID: 185221595}
+  - component: {fileID: 185221596}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -283,6 +284,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &185221595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185221592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a710206f68bd4b36868aae0620b5f3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &185221596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185221592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 185221595}
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &353525250
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95872679c1bb3904c9e8fc08ae02c0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
 --- !u!64 &540363647
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -655,7 +690,7 @@ GameObject:
   - component: {fileID: 970829806}
   - component: {fileID: 970829805}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MoneyGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,6 +833,7 @@ GameObject:
   - component: {fileID: 1015609875}
   - component: {fileID: 1015609878}
   - component: {fileID: 1015609877}
+  - component: {fileID: 1015609876}
   m_Layer: 5
   m_Name: MoneyLabel
   m_TagString: Untagged
@@ -824,6 +860,18 @@ RectTransform:
   m_AnchoredPosition: {x: -170, y: -90}
   m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1015609876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015609874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96cbc91ebf1245a7b8d1c5f8e6c98c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1015609877
 MonoBehaviour:
   m_ObjectHideFlags: 0

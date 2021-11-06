@@ -28,8 +28,6 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
-        print("camera " + photonView.Controller.NickName + ":" + playerBody.transform.position);
-
         if (IsLocked || !photonView.IsMine)
             return;
 

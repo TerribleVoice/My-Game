@@ -1,4 +1,6 @@
 ﻿using System;
+using Global;
+using Photon.Pun;
 
 namespace Multiplayer
 {
@@ -8,5 +10,13 @@ namespace Multiplayer
         public Guid Id;
         public int Money;
         public float IncomeMultiplier;
+
+        public PlayerInfo()
+        {
+            Id = Guid.Parse(PhotonNetwork.LocalPlayer.UserId);
+            Money = GlobalConstants.StartMoney;
+            IncomeMultiplier = 1;
+            NickName = PhotonNetwork.NickName;
+        }
     }
 }

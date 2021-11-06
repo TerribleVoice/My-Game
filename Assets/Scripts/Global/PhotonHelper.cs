@@ -5,6 +5,6 @@ namespace Global
 {
     public static class PhotonHelper
     {
-        public static Guid LocalPlayerId = Guid.Parse(PhotonNetwork.LocalPlayer.UserId);
+        public static readonly Guid LocalPlayerId = Guid.Parse(PhotonNetwork.LocalPlayer.UserId);
     }
 }

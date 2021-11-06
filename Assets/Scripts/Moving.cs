@@ -30,7 +30,6 @@ public class Moving : MonoBehaviour
         {
             return;
         }
-        print(PhotonNetwork.LocalPlayer.UserId);
 
         GravityLogic();
         MovementLogic();

@@ -1,20 +1,22 @@
-﻿using Multiplayer;
+﻿using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Multiplayer
 {
-    public PlayerInfo PlayerInfo;
-    public Camera Camera;
-    public Transform Transform;
-    public CharacterController Controller;
-
-    void Start()
+    public class Player : MonoBehaviour
     {
+        public PlayerInfo PlayerInfo;
+        public Camera Camera;
+        public CharacterController Controller;
 
-    }
+        private void Awake()
+        {
+            PlayerInfo = new PlayerInfo();
+        }
 
-    void Update()
-    {
+        void Update()
+        {
 
+        }
     }
 }
