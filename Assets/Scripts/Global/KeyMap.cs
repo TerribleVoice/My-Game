@@ -6,5 +6,6 @@ namespace Global
     {
         public static KeyCode OpenBuildingMenu = KeyCode.Tab;
         public static KeyCode Jump = KeyCode.Space;
+        public static KeyCode CloseMenu = KeyCode.Escape;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Buildings
@@ -15,9 +15,19 @@ namespace Buildings
 
         }
 
-        public override void Place(Guid ownerId)
+        public override void Place()
         {
-            base.Place(ownerId);
+            base.Place();
+            StartCoroutine(GenerateMoneyCoroutine());
+        }
+
+        private IEnumerator GenerateMoneyCoroutine()
+        {
+            while (true)
+            {
+                Owner.PlayerInfo.Money += 10;
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }

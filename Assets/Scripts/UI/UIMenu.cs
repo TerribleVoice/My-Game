@@ -1,4 +1,5 @@
 ﻿using System;
+using Global;
 using Multiplayer;
 using Photon.Pun;
 using UnityEngine;
@@ -18,6 +19,14 @@ namespace UI
         public void SwitchActivityState()
         {
             ChangeActivityState(!IsActive);
+        }
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyMap.CloseMenu))
+            {
+                Disable();
+            }
         }
 
         public void Activate()
