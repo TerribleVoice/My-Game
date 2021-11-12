@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Buildings;
 using Global;
 using Photon.Pun;
 
@@ -10,6 +12,7 @@ namespace Multiplayer
         public Guid Id;
         public int Money;
         public float IncomeMultiplier;
+        public List<Building> Buildings;
 
         public PlayerInfo()
         {

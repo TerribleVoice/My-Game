@@ -11,11 +11,11 @@ namespace Multiplayer
     public class GameManager : MonoBehaviourPunCallbacks
     {
         public GameObject PlayerPrefab;
+        public Transform Spawn;
         void Start()
         {
             RegisterSerialization();
-            var startPos = new Vector3(0, 1.5f, 0);
-            var player = PhotonNetwork.Instantiate(PlayerPrefab.name, startPos, Quaternion.identity).GetComponent<Player>();
+            var player = PhotonNetwork.Instantiate(PlayerPrefab.name, Spawn.position, Quaternion.identity).GetComponent<Player>();
             Local.Player = player;
         }
 

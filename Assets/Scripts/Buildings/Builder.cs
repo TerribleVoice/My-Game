@@ -34,7 +34,7 @@ namespace Buildings
             }
         }
 
-        public void StartPlacingBuilding(GameObject building)
+        public void StartPlacingBuilding(Building building)
         {
             var player = Local.Player;
             playerCamera = player.Camera;

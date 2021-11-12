@@ -8,12 +8,12 @@ namespace UI
 {
     public class UIMenu : MonoBehaviour
     {
-        public MouseLook MouseLook;
+        private MouseLook mouseLook;
         public bool IsActive { get; private set; }
 
         private void Awake()
         {
-            MouseLook = Local.Player.Camera.GetComponent<MouseLook>();
+            mouseLook = Local.Player.Camera.GetComponent<MouseLook>();
         }
 
         public void SwitchActivityState()
@@ -43,7 +43,7 @@ namespace UI
         {
             IsActive = isActive;
             gameObject.SetActive(isActive);
-            MouseLook.IsLocked = isActive;
+            mouseLook.IsLocked = isActive;
             Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
         }
 

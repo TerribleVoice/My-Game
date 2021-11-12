@@ -5,16 +5,6 @@ namespace Buildings
 {
     public class MoneyGenerator : Building
     {
-        void Start()
-        {
-
-        }
-
-        void Update()
-        {
-
-        }
-
         public override void Place()
         {
             base.Place();
